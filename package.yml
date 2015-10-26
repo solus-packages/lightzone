@@ -1,15 +1,21 @@
 name       : lightzone
-version    : 4.1.2
-release    : 1
+version    : 4.1.3
+release    : 2
 source     :
-    - https://github.com/ktgw0316/LightZone/archive/4.1.2.tar.gz : 46d9a849e500eaa403fd7c8f03220828a9283ec96a45b2d51aa2adff5da5ecce
+    - https://github.com/ktgw0316/LightZone/archive/4.1.3.tar.gz : b861f1e7339c7d5c86349605827943b952f8dad839e6d044d19251520376d274
 license    : BSD-3-Clause
 summary    : LightZone - digital darkroom and photo editor
 description: |
     LightZone is a professional-level digital darkroom and photo editor. It includes RAW processing and editing. Rather than using layers in the way that other photo editors do, LightZone lets the user build up a stack of tools which can be rearranged, readjusted, turned off and on, and removed from the stack. It's a completely non-destructive editor, where any of the tools can be re-adjusted or modified later — even in a different editing session. A tool stack can even be copied to a batch of photos at one time. LightZone always operates in a 16-bit linear color space with the wide gamut of ProPhoto RGB.
 builddeps  :
+    - libjpeg-turbo-devel
+    - pkgconfig(libtiff-4)
+    - pkgconfig(lcms2)
+    - pkgconfig(x11)
+    - java2help
 setup      : |
-    %configure
+    export JAVA_HOME=/opt/jdk1.8.0_60/
+    ant -f linux/build.xml jar
 build      : |
     %make
 install    : |
